@@ -5,6 +5,6 @@
 
 namespace Format {
 std::string ElapsedTime(float seconds);  // TODO: See src/format.cpp
-};                                    // namespace Format
+};                                       // namespace Format
 
 #endif

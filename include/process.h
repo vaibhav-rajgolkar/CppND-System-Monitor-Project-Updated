@@ -10,21 +10,21 @@ It contains relevant attributes as shown below
 
 class Process {
  public:
-  Process(int pid, std::string user, long int ram, long int uptime, std::string command, std::vector<long> cpu_stat)
-  :pid_(pid),
-   user_(user),
-   ram_(ram),
-   uptime_(uptime),
-   command_(command),
-   cpu_util_stat_(cpu_stat)
-   {}
+  Process(int pid, std::string user, long int ram, long int uptime,
+          std::string command, std::vector<long> cpu_stat)
+      : pid_(pid),
+        user_(user),
+        ram_(ram),
+        uptime_(uptime),
+        command_(command),
+        cpu_util_stat_(cpu_stat) {}
 
-  int Pid() const;                               // TODO: See src/process.cpp
-  std::string User() const;                      // TODO: See src/process.cpp
-  std::string Command() const ;                   // TODO: See src/process.cpp
+  int Pid() const;                         // TODO: See src/process.cpp
+  std::string User() const;                // TODO: See src/process.cpp
+  std::string Command() const;             // TODO: See src/process.cpp
   float CpuUtilization();                  // TODO: See src/process.cpp
-  long int Ram() const;                       // TODO: See src/process.cpp
-  long int UpTime() const;                       // TODO: See src/process.cpp
+  long int Ram() const;                    // TODO: See src/process.cpp
+  long int UpTime() const;                 // TODO: See src/process.cpp
   bool operator<(Process const& a) const;  // TODO: See src/process.cpp
 
   void Pid(int pid);
@@ -43,14 +43,14 @@ class Process {
   std::string command_{};
   std::vector<long> cpu_util_stat_{};
 
-  enum ProcessCpuStats{
-  kuTime_ = 0,
-  ksTime_,
-  kCutTime_,
-  kCsTime_,
-  kStartTime_,
-  kValidDataSize_
-};
+  enum ProcessCpuStats {
+    kuTime_ = 0,
+    ksTime_,
+    kCutTime_,
+    kCsTime_,
+    kStartTime_,
+    kValidDataSize_
+  };
 };
 
 #endif

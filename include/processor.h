@@ -1,8 +1,8 @@
 #ifndef PROCESSOR_H
 #define PROCESSOR_H
 
-#include <vector>
 #include <string>
+#include <vector>
 
 class Processor {
  public:
@@ -11,23 +11,23 @@ class Processor {
 
   // TODO: Declare any necessary private members
  private:
-    std::vector<std::string> previous_cpu_stat_{};
+  std::vector<std::string> previous_cpu_stat_{};
 
   // CPU
-    enum CPUStates {
-        kCpu = 0,
-        kUser_,
-        kNice_,
-        kSystem_,
-        kIdle_,
-        kIOwait_,
-        kIRQ_,
-        kSoftIRQ_,
-        kSteal_,
-        kGuest_,
-        kGuestNice_,
-        kValidDataSize_
-    };
+  enum CPUStates {
+    kCpu = 0,
+    kUser_,
+    kNice_,
+    kSystem_,
+    kIdle_,
+    kIOwait_,
+    kIRQ_,
+    kSoftIRQ_,
+    kSteal_,
+    kGuest_,
+    kGuestNice_,
+    kValidDataSize_
+  };
 };
 
 #endif

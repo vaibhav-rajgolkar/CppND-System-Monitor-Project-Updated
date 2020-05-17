@@ -7,7 +7,7 @@
 
 namespace LinuxParser {
 // Paths
-const std::string kProcDirectory = "/proc/";
+const std::string kProcDirectory{"/proc/"};
 const std::string kCmdlineFilename{"/cmdline"};
 const std::string kCpuinfoFilename{"/cpuinfo"};
 const std::string kStatusFilename{"/status"};
@@ -41,22 +41,18 @@ std::string User(int pid);
 long int UpTime(int pid);
 std::vector<long> CpuUtilization(int pid);
 
-template<typename KeyType, typename ValueType>
-ValueType ProcessFileForValue(std::string file, std::string label)
-{
+template <typename KeyType, typename ValueType>
+ValueType ProcessFileForValue(std::string file, std::string label) {
   ValueType value{};
   std::ifstream filestream(file);
-  if(filestream.is_open())
-  {
+  if (filestream.is_open()) {
     std::string line{};
-    while(std::getline(filestream, line))
-    {
+    while (std::getline(filestream, line)) {
       KeyType key{};
-      //ValueType value{};
+      // ValueType value{};
       std::istringstream linestream(line);
       linestream >> key >> value;
-      if(key == label)
-      {
+      if (key == label) {
         return value;
       }
     }
