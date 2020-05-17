@@ -7,7 +7,7 @@
 
 namespace LinuxParser {
 // Paths
-const std::string kProcDirectory{"/proc/"};
+const std::string kProcDirectory = "/proc/";
 const std::string kCmdlineFilename{"/cmdline"};
 const std::string kCpuinfoFilename{"/cpuinfo"};
 const std::string kStatusFilename{"/status"};
@@ -20,26 +20,13 @@ const std::string kPasswordPath{"/etc/passwd"};
 
 // System
 float MemoryUtilization();
-long UpTime();
+float UpTime();
 std::vector<int> Pids();
 int TotalProcesses();
 int RunningProcesses();
 std::string OperatingSystem();
 std::string Kernel();
 
-// CPU
-enum CPUStates {
-  kUser_ = 0,
-  kNice_,
-  kSystem_,
-  kIdle_,
-  kIOwait_,
-  kIRQ_,
-  kSoftIRQ_,
-  kSteal_,
-  kGuest_,
-  kGuestNice_
-};
 std::vector<std::string> CpuUtilization();
 long Jiffies();
 long ActiveJiffies();
@@ -48,10 +35,34 @@ long IdleJiffies();
 
 // Processes
 std::string Command(int pid);
-std::string Ram(int pid);
+long int Ram(int pid);
 std::string Uid(int pid);
 std::string User(int pid);
 long int UpTime(int pid);
+std::vector<long> CpuUtilization(int pid);
+
+template<typename KeyType, typename ValueType>
+ValueType ProcessFileForValue(std::string file, std::string label)
+{
+  ValueType value{};
+  std::ifstream filestream(file);
+  if(filestream.is_open())
+  {
+    std::string line{};
+    while(std::getline(filestream, line))
+    {
+      KeyType key{};
+      //ValueType value{};
+      std::istringstream linestream(line);
+      linestream >> key >> value;
+      if(key == label)
+      {
+        return value;
+      }
+    }
+  }
+  return value;
+}
 };  // namespace LinuxParser
 
 #endif
